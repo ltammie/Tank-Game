@@ -125,6 +125,7 @@ public class ClientWindow {
                 int b = 0;
                 int eb = 0;
                 try {
+                    boolean flag = in.readBoolean();
                     enemyPos -= in.readInt();
                     hpValue = in.readInt();
                     enemyHpValue = in.readInt();
@@ -135,7 +136,9 @@ public class ClientWindow {
                         if (x == enemyPos && y == 30) {
                             enemyHpValue -= 5;
                         }
-                        gc.drawImage(bullet, x, y, 20, 20);
+                        if (!flag) {
+                            gc.drawImage(bullet, x, y, 20, 20);
+                        }
                     }
 
                     eb = in.readInt();
