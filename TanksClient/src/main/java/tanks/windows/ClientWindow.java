@@ -6,15 +6,11 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ClientWindow {
     private static Socket client;
@@ -35,7 +31,9 @@ public class ClientWindow {
         primaryStage.setResizable(false);
 
         Group root = new Group();
-        Scene theScene = new Scene( root );
+        Scene theScene = new Scene(root);
+
+
         primaryStage.setScene( theScene );
 
         Canvas canvas = new Canvas(800, 800);
@@ -46,10 +44,41 @@ public class ClientWindow {
         Image field = new Image( "/images/field.png" );
         Image tank = new Image( "/images/player.png" );
 
+        AtomicInteger shift = new AtomicInteger(0);
+
+        theScene.setOnKeyPressed(
+                e -> {
+                    String code = e.getCode().toString();
+                    System.out.println(code);
+
+                    if (code.equals("RIGHT")) {
+                        shift.getAndAdd(5);
+                        shift.set(Math.min(shift.get(), 350));
+                    }
+                    if (code.equals("LEFT")) {
+                        shift.getAndAdd(-5);
+                        shift.set(Math.max(shift.get(), -350));
+                    }
+                });
+
+        theScene.setOnKeyReleased(
+                e -> {
+                    String code = e.getCode().toString();
+                    System.out.println(code);
+                    if (code.equals("ESCAPE")) {
+                        ClientWindow.stopThread();
+                        primaryStage.close();
+                    }
+                    if (code.equals("SPACE")) {
+
+                    }
+                });
+
 
         gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
         gc.drawImage(tank, 360, 650, 80, 100);
         primaryStage.show();
+
 
         try {
             client = new Socket(ip, port);
@@ -70,10 +99,15 @@ public class ClientWindow {
 
 
                     double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-                    double x = 232 + 128 * Math.cos(t);
+//
 
+
+
+                    int newPos = 360 + shift.get();
                     gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
-                    gc.drawImage(tank, x, 650, 80, 100);
+                    gc.drawImage(tank, newPos, 650, 80, 100);
+
+//                    gc.drawImage(tank, x, 650, 80, 100);
                 }
             }.start();
         } catch (IOException e) {
