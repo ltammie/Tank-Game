@@ -1,6 +1,9 @@
 package tanks.app;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import tanks.windows.ClientWindow;
 
 public class Client extends Application {
 
@@ -36,7 +40,7 @@ public class Client extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Label serverIpLabel = new Label("IP-adress");
+        Label serverIpLabel = new Label("IP-address");
         TextField serverIpField = new TextField();
         serverIpField.setTooltip(new Tooltip("Enter server ip-address"));
 
@@ -44,7 +48,17 @@ public class Client extends Application {
         TextField serverPortField = new TextField();
         serverPortField.setTooltip(new Tooltip("Enter servers port to connect"));
 
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e){
+                ClientWindow window = new ClientWindow();
+                window.start(serverIpField.getText(), Integer.parseInt(serverPortField.getText()));
+            }
+        };
+
+
         Button connect = new Button("Connect");
+        connect.setDefaultButton(true);
+        connect.setOnAction(event);
 
         grid.add(serverIpLabel, 0, 0);
         grid.add(serverIpField, 1, 0);
@@ -58,120 +72,3 @@ public class Client extends Application {
 
     }
 }
-
-//
-//
-//@Parameters(separators = "=")
-//class Console{
-//    @Parameter(names = {"--server-port", "-p"}, description = "port")
-//    private Integer port = 8081;
-//
-//    @Parameter(names = {"--server-ip", "-ip"}, description = "server-ip")
-//    private String ip = "localhost";
-//
-//    public Integer getPort() {
-//        return port;
-//    }
-//
-//    public String getIp() {
-//        return ip;
-//    }
-//}
-//
-//public class Client {
-//
-//    private static Socket client;
-//    private static BufferedReader in;
-//    private static BufferedWriter out;
-//    private static final Scanner scanner = new Scanner(System.in);
-//
-//    public static void main(String[] args) throws IOException {
-//        Console console = new Console();
-//        JCommander.newBuilder().addObject(console).build().parse(args);
-//
-//        try {
-//            client = new Socket(console.getIp(), console.getPort());
-//        } catch (IOException e) {
-//            System.out.println("failed to connect!");
-//        }
-//        try {
-//            in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-//            out = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
-//            System.out.println(read());
-//            while (!read().equals("yes")){
-//                send(scanner.nextLine());
-//            }
-//            System.out.println(read());
-//            send(scanner.nextLine());
-//            System.out.println(read());
-//            send(scanner.nextLine());
-//            System.out.println(read());
-//            new ReadMsg().start();
-//            new WriteMsg().start();
-//        } catch (IOException e) {
-//            System.err.println(e.toString());
-//            Client.stopThread();
-//        }
-//    }
-//
-//    private static void stopThread() {
-//        try {
-//            if (!client.isClosed()) {
-//                client.close();
-//                in.close();
-//                out.close();
-//            }
-//        } catch (IOException ignored) {}
-//    }
-//
-//    private static class ReadMsg extends Thread {
-//
-//        @Override
-//        public void run() {
-//            String str;
-//            try {
-//                while (true) {
-//                    str = read();
-//                    if (str.equals("Exit")) {
-//                        Client.stopThread();
-//                        break;
-//                    }
-//                    System.out.println(str);
-//                }
-//            } catch (IOException e) {
-//                Client.stopThread();
-//            }
-//        }
-//    }
-//    public static class WriteMsg extends Thread {
-//
-//        @Override
-//        public void run() {
-//            while (true) {
-//                String userWord;
-//                try {
-//                    userWord = scanner.nextLine();
-//                    if (userWord.equals("Exit")) {
-//                        send("Exit");
-//                        Client.stopThread();
-//                        break;
-//                    } else {
-//                        send(userWord);
-//                    }
-//                } catch (IOException e) {
-//                    Client.stopThread();
-//                }
-//            }
-//        }
-//    }
-//
-//
-//    public static String read() throws IOException {
-//        return in.readLine();
-//    }
-//
-//    public  static void send(String message) throws IOException {
-//        out.write(message + "\n");
-//        out.flush();
-//    }
-//}
