@@ -83,9 +83,11 @@ public class ClientWindow {
         System.out.println("connected");
 
         final long startNanoTime = System.nanoTime();
-        new AnimationTimer() {
-            public void handle(long currentNanoTime) {
+
+//        new AnimationTimer() {
+//            public void handle(long currentNanoTime) {
 //                    double t = (currentNanoTime - startNanoTime) / 1000000000.0;
+        while (true) {
                 int newPos = 360 + shift.get();
                 int enemyPos = 360;
 
@@ -109,7 +111,7 @@ public class ClientWindow {
 
 
             }
-        }.start();
+//        }.start();
     }
 
     private static void stopThread() {
