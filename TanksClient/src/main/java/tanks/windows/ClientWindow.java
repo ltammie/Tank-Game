@@ -78,7 +78,7 @@ public class ClientWindow {
         primaryStage.show();
 //
 //        while (!in.readBoolean()) ;
-//        System.out.println("connected");
+        System.out.println("connected");
 
         try {
             in = new DataInputStream(client.getInputStream());
