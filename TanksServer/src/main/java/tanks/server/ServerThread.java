@@ -37,7 +37,9 @@ public class ServerThread extends Thread {
                 System.out.println(shot);
                 if (shot) {
                     bullets.add(new Point(360 + shift, 630));
+                    System.out.println(bullets.size());
                     enemyBulls.add(new Point(360 - shift, 50));
+                    System.out.println(enemyBulls.size());
                 }
 
                 Iterator<Point> i = bullets.iterator();
