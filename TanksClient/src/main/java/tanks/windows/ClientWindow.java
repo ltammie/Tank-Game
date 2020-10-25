@@ -90,11 +90,8 @@ public class ClientWindow {
         gc.drawImage(tank, 360, 650, 80, 100);
         primaryStage.show();
 
-        while (true) {
-            PackageToClient initPc = (PackageToClient) in.readObject();
-            if (initPc.gameStarted) {
-                break;
-            }
+        PackageToClient initPc;
+        while (!(initPc = (PackageToClient) in.readObject()).gameStarted) {
         }
         System.out.println("connected");
 
