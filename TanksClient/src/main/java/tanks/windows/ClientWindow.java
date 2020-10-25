@@ -90,10 +90,9 @@ public class ClientWindow {
         gc.drawImage(tank, 360, 650, 80, 100);
         primaryStage.show();
 
-        PackageToClient initPc;
-        while (!(initPc = (PackageToClient) in.readObject()).gameStarted) {
-            System.out.println("kek");
-        }
+//        while (!((PackageToClient) in.readObject()).gameStarted) {
+//            System.out.println("kek");
+//        }
         System.out.println("connected");
 
         final long startNanoTime = System.nanoTime();
