@@ -74,9 +74,12 @@ public class ClientWindow {
                     }
                 });
 
+        int newPos = 360;
+        int enemyPos = 360;
 
         gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
-        gc.drawImage(tank, 360, 650, 80, 100);
+        gc.drawImage(tank, newPos, 650, 80, 100);
+        gc.drawImage(enemy, enemyPos, 50, 80, 100);
         primaryStage.show();
 //
         while (!in.readBoolean()) ;
@@ -88,8 +91,8 @@ public class ClientWindow {
 //            public void handle(long currentNanoTime) {
 //                    double t = (currentNanoTime - startNanoTime) / 1000000000.0;
         while (true) {
-                int newPos = 360 + shift.get();
-                int enemyPos = 360;
+                newPos = 360 + shift.get();
+                enemyPos = 360;
 
                 try {
                     out.writeInt(newPos);
@@ -107,7 +110,7 @@ public class ClientWindow {
 
                 gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
                 gc.drawImage(tank, newPos, 650, 80, 100);
-                gc.drawImage(tank, enemyPos, 50, 80, 100);
+                gc.drawImage(enemy, enemyPos, 50, 80, 100);
 
 
             }
