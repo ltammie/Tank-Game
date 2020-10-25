@@ -116,14 +116,13 @@ public class ClientWindow {
                 PackageToClient pc;
                 int hpValue = 100;
                 int enemyHpValue = 100;
-//                try {
-//                    pc = (PackageToClient) in.readObject();
-//                    enemyPos -= pc.shiftX;
-//                    hpValue = pc.hp;
-//                    enemyHpValue = pc.enemyHp;
-//                } catch (IOException | ClassNotFoundException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    pc = (PackageToClient) in.readObject();
+                    enemyPos -= pc.shiftX;
+                    hpValue = pc.hp;
+                    enemyHpValue = pc.enemyHp;
+                } catch (IOException | ClassNotFoundException e) {
+                }
 
 
                 gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
