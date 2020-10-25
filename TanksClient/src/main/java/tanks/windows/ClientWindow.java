@@ -92,6 +92,7 @@ public class ClientWindow {
 
         PackageToClient initPc;
         while (!(initPc = (PackageToClient) in.readObject()).gameStarted) {
+            System.out.println("kek");
         }
         System.out.println("connected");
 
