@@ -26,17 +26,21 @@ public class ServerThread extends Thread {
             int enemyHp = 70;
             while (true) {
                 PackageToServer ps = (PackageToServer) in.readObject();
+                System.out.println(id);
+
+                System.out.println(ps.shiftX);
+                System.out.println(ps.isShot);
 
 
 
-                PackageToClient pc = new PackageToClient(ps.shiftX, hp, enemyHp);
-                for (ServerThread s : Server.serverList){
-                    if (s == this) {
-                        continue;
-                    }
-                    s.out.writeObject(pc);
-                    s.out.flush();
-                }
+//                PackageToClient pc = new PackageToClient(ps.shiftX, hp, enemyHp);
+//                for (ServerThread s : Server.serverList){
+//                    if (s == this) {
+//                        continue;
+//                    }
+//                    s.out.writeObject(pc);
+//                    s.out.flush();
+//                }
             }
         } catch (IOException | ClassNotFoundException ignored) {
         }
