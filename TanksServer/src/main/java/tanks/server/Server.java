@@ -9,7 +9,6 @@ public class Server {
     private static Socket clientSocket;
     private static ServerSocket server;
     public static LinkedList<ServerThread> serverList = new LinkedList<>();
-    public static int[] player = new int[2];
 
 
     public static void start(Integer port) throws IOException, InterruptedException {
