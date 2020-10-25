@@ -14,8 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ClientWindow {
     private static Socket client;
-    private static BufferedReader in;
-    private static BufferedWriter out;
+    private static ObjectInputStream in;
+    private static ObjectOutputStream out;
     private Stage primaryStage;
 
     public ClientWindow(Stage primaryStage) {
@@ -96,18 +96,12 @@ public class ClientWindow {
             {
                 public void handle(long currentNanoTime)
                 {
-
-
                     double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-//
-
-
-
                     int newPos = 360 + shift.get();
                     gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
                     gc.drawImage(tank, newPos, 650, 80, 100);
 
-//                    gc.drawImage(tank, x, 650, 80, 100);
+
                 }
             }.start();
         } catch (IOException e) {
