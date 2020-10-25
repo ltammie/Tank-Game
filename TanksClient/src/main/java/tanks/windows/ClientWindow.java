@@ -10,12 +10,13 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ClientWindow {
     private static Socket client;
-    private static DataInputStream in;
-    private static DataOutputStream out;
+    private static ObjectInputStream in;
+    private static ObjectOutputStream out;
     private Stage primaryStage;
 
     public ClientWindow(Stage primaryStage) {
@@ -27,8 +28,8 @@ public class ClientWindow {
 
         try {
             client = new Socket(ip, port);
-            in = new DataInputStream(client.getInputStream());
-            out = new DataOutputStream(client.getOutputStream());
+            in = new ObjectInputStream(client.getInputStream());
+            out = new ObjectOutputStream(client.getOutputStream());
         } catch (IOException e) {
             System.out.println("failed to connect!");
             System.exit(-1);
@@ -53,6 +54,7 @@ public class ClientWindow {
         Image enemyBorder = new Image("/images/border.png");
 
         AtomicInteger shift = new AtomicInteger(0);
+        AtomicBoolean isShot = new AtomicBoolean(false);
 
         theScene.setOnKeyPressed(
                 e -> {
@@ -76,6 +78,9 @@ public class ClientWindow {
                         primaryStage.close();
                     }
                     if (code.equals("SPACE")) {
+                        if (!isShot.get()) {
+                            isShot.set(true);
+                        }
                     }
                 });
 
@@ -91,34 +96,32 @@ public class ClientWindow {
 
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
-                    double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-//        while (true) {
+                double t = (currentNanoTime - startNanoTime) / 1000000000.0;
 
                 int newPos;
                 int enemyPos = 360;
                 newPos = 360 + shift.get();
 
                 try {
-                    out.writeInt(shift.get());
+                    PackageToServer ps = new PackageToServer(shift.get(), newPos, 650, isShot.get());
+                    isShot.set(false);
+                    out.writeObject(ps);
                     out.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
+                PackageToClient pc;
+                int hpValue = 100;
+                int enemyHpValue = 100;
                 try {
-                    enemyPos -= in.readInt();
-                } catch (IOException e) {
+                    pc = (PackageToClient) in.readObject();
+                    enemyPos -= pc.shiftX;
+                    hpValue = pc.hp;
+                    enemyHpValue = pc.enemyHp;
+                } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-
-                int hpValue = 50;
-                int enemyHpValue = 50;
-//                try {
-//                    hpValue = in.readInt();
-//                    enemyHpValue = in.readInt();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
 
 
                 gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
