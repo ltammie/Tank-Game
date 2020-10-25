@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>tankse</groupId>
     <artifactId>TanksServer</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1-PREALPHA</version>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
@@ -68,10 +68,10 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <configuration>
-                        <finalName>socket-server</finalName>
+                        <finalName>Server</finalName>
                         <archive>
                             <manifest>
-                                <mainClass>edu.school21.sockets.app.Main</mainClass>
+                                <mainClass>tanks.app.TankServer</mainClass>
                             </manifest>
                         </archive>
                         <descriptorRefs>
