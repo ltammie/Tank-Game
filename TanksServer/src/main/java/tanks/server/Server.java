@@ -29,6 +29,7 @@ public class Server {
             for (ServerThread t : serverList) {
                 t.start();
             }
+            while(true);
 
 
 

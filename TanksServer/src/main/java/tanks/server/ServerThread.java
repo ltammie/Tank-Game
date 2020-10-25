@@ -43,7 +43,6 @@ public class ServerThread extends Thread {
             }
         } catch (IOException | ClassNotFoundException ignored) {
         }
-        stopThread();
     }
 
     public void stopThread() {
