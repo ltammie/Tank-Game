@@ -15,6 +15,7 @@ public class ServerThread extends Thread {
         in = new DataInputStream(client.getInputStream());
         out = new DataOutputStream(client.getOutputStream());
         this.id = id;
+        this.start();
     }
 
     @Override
