@@ -92,7 +92,7 @@ public class ClientWindow {
                 int enemyPos = 360;
 
                 try {
-                    out.write(newPos);
+                    out.writeInt(newPos);
                     out.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
