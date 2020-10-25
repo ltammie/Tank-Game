@@ -4,17 +4,21 @@ package tanks.server;
 import java.io.*;
 import java.net.Socket;
 
+
+
+
+
 public class ServerThread extends Thread {
-    public DataInputStream in;
-    public DataOutputStream out;
+    public ObjectInputStream in;
+    public ObjectOutputStream out;
     public Socket client;
     public int id;
     public boolean isPlaying;
 
     public ServerThread(Socket client, int id) throws IOException {
         this.client = client;
-        in = new DataInputStream(client.getInputStream());
-        out = new DataOutputStream(client.getOutputStream());
+        in = new ObjectInputStream(client.getInputStream());
+        out = new ObjectOutputStream(client.getOutputStream());
         isPlaying = false;
         this.id = id;
     }
@@ -23,17 +27,23 @@ public class ServerThread extends Thread {
     public void run() {
         try {
             int playerPos = 0;
+            int hp = 100;
+            int enemyHp = 70;
             while (true) {
-                playerPos = in.readInt();
+                PackageToServer ps = (PackageToServer) in.readObject();
+
+
+
+                PackageToClient pc = new PackageToClient(ps.shiftX, hp, enemyHp);
                 for (ServerThread s : Server.serverList){
                     if (s == this) {
                         continue;
                     }
-                    s.out.writeInt(playerPos);
+                    s.out.writeObject(pc);
                     s.out.flush();
                 }
             }
-        } catch (IOException ignored) {
+        } catch (IOException | ClassNotFoundException ignored) {
         }
         stopThread();
     }
