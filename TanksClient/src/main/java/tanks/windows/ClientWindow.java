@@ -109,7 +109,7 @@ public class ClientWindow {
 
                 gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
                 gc.drawImage(tank, newPos, 650, 80, 100);
-                gc.drawImage(enemy, enemyPos, 50, 80, 100);
+                gc.drawImage(enemy, enemyPos, 30, 80, 100);
         }
         }.start();
     }
