@@ -45,7 +45,7 @@ public class ServerThread extends Thread {
                 Iterator<Point> i = bullets.iterator();
                 while (i.hasNext()) {
                     Point p = i.next(); // must be called before you can call i.remove()
-                    p.y -= 1;
+                    p.y -= 10;
                     if (p.y < 0) {
                         i.remove();
                     }
@@ -54,7 +54,7 @@ public class ServerThread extends Thread {
                 i = enemyBulls.iterator();
                 while (i.hasNext()) {
                     Point p = i.next(); // must be called before you can call i.remove()
-                    p.y += 1;
+                    p.y += 20;
                     if (p.y == 650) {
                         if (p.x == 360 + shift) {
                             hp -= 5;
