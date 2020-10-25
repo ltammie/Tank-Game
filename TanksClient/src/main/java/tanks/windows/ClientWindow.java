@@ -28,8 +28,8 @@ public class ClientWindow {
 
         try {
             client = new Socket(ip, port);
-            in = new ObjectInputStream(client.getInputStream());
             out = new ObjectOutputStream(client.getOutputStream());
+            in = new ObjectInputStream(client.getInputStream());
             System.out.println("Connected?");
         } catch (IOException e) {
             System.out.println("failed to connect!");
