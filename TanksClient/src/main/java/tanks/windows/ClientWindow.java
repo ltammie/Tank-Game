@@ -77,7 +77,8 @@ public class ClientWindow {
         gc.drawImage(tank, 360, 650, 80, 100);
         primaryStage.show();
 
-       while (!in.readBoolean());
+        while (!in.readBoolean()) ;
+        System.out.println("connected");
 
         try {
             in = new DataInputStream(client.getInputStream());
