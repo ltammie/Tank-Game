@@ -84,9 +84,9 @@ public class ClientWindow {
 
         final long startNanoTime = System.nanoTime();
 
-        new AnimationTimer() {
-            public void handle(long currentNanoTime) {
-                    double t = (currentNanoTime - startNanoTime) / 1000000000.0;
+//        new AnimationTimer() {
+//            public void handle(long currentNanoTime) {
+//                    double t = (currentNanoTime - startNanoTime) / 1000000000.0;
         while (true) {
                 int newPos = 360 + shift.get();
                 int enemyPos = 360;
