@@ -1,6 +1,8 @@
 package tanks.windows;
 
-public class PackageToServer {
+import java.io.Serializable;
+
+public class PackageToServer implements Serializable {
     public int shiftX;
     public int x;
     public int y;
