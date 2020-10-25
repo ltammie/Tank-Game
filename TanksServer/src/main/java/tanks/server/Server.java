@@ -12,7 +12,7 @@ public class Server {
     public static int[] player = new int[2];
 
 
-    public static void start(Integer port) throws IOException {
+    public static void start(Integer port) throws IOException, InterruptedException {
         try {
             server = new ServerSocket(port);
             System.out.println("Server running!");
@@ -30,11 +30,13 @@ public class Server {
                 t.start();
                 t.out.writeBoolean(true);
             }
-            while (true);
 
 
 
         } finally {
+            for (ServerThread t : serverList) {
+                t.join();
+            }
             server.close();
             System.out.println("Server stopped working");
         }

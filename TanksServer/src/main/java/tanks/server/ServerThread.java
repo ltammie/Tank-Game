@@ -25,6 +25,7 @@ public class ServerThread extends Thread {
             int playerPos = 0;
             while (true) {
                 playerPos = in.readInt();
+                System.out.println("Player pos: " + playerPos);
                 for (ServerThread s : Server.serverList){
                     if (s == this) {
                         continue;
