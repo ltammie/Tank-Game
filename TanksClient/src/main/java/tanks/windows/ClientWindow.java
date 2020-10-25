@@ -110,14 +110,15 @@ public class ClientWindow {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                int hpValue = 0;
-                int enemyHpValue = 0;
-                try {
-                    hpValue = in.readInt();
-                    enemyHpValue = in.readInt();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+                int hpValue = 50;
+                int enemyHpValue = 50;
+//                try {
+//                    hpValue = in.readInt();
+//                    enemyHpValue = in.readInt();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
 
 
                 gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
