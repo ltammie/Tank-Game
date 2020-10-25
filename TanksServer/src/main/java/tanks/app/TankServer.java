@@ -15,7 +15,6 @@ public class TankServer {
             Server.start(console.getPort());
         } catch (IOException | InterruptedException e) {
             System.out.println("Server could not run.");
-            e.printStackTrace();
         }
     }
 
