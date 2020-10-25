@@ -11,11 +11,9 @@ public class TankServer {
         ConsoleArguments console = new ConsoleArguments();
         JCommander.newBuilder().addObject(console).build().parse(args);
 
-        try {
-            Server.start(console.getPort());
-        } catch (IOException | InterruptedException e) {
-            System.out.println("Server could not run.");
-        }
+        Server server = new Server(console.getPort());
+        server.start();
+
     }
 
 }
