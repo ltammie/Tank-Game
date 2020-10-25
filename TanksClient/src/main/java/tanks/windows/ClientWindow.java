@@ -47,6 +47,11 @@ public class ClientWindow {
         Image field = new Image("/images/field.png");
         Image tank = new Image("/images/player.png");
         Image enemy = new Image("/images/enemy.png");
+        Image hp = new Image("/images/life.png");
+        Image enemyHP = new Image("/images/life.png");
+        Image borderHP = new Image("/images/border.png");
+        Image enemyBorder = new Image("/images/border.png");
+
         AtomicInteger shift = new AtomicInteger(0);
 
         theScene.setOnKeyPressed(
@@ -105,12 +110,25 @@ public class ClientWindow {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                int hpValue = 0;
+                int enemyHpValue = 0;
+                try {
+                    hpValue = in.readInt();
+                    enemyHpValue = in.readInt();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
 
                 gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
                 gc.drawImage(tank, newPos, 650, 80, 100);
                 gc.drawImage(enemy, enemyPos, 30, 80, 100);
-        }
+                gc.drawImage(hp, 10, 30, hpValue, 20);
+                gc.drawImage(borderHP, 10, 30, 100, 20);
+                gc.drawImage(enemyHP, 10, 30, enemyHpValue, 20);
+                gc.drawImage(enemyBorder, 10, 30, 10, 20);
+
+            }
         }.start();
     }
 
