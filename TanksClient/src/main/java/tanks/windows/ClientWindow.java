@@ -27,6 +27,8 @@ public class ClientWindow {
 
         try {
             client = new Socket(ip, port);
+            in = new DataInputStream(client.getInputStream());
+            out = new DataOutputStream(client.getOutputStream());
         } catch (IOException e) {
             System.out.println("failed to connect!");
             System.exit(-1);
@@ -77,14 +79,12 @@ public class ClientWindow {
         gc.drawImage(tank, 360, 650, 80, 100);
         primaryStage.show();
 //
-//        while (!in.readBoolean()) ;
+        while (!in.readBoolean()) ;
         System.out.println("connected");
 
         try {
-            in = new DataInputStream(client.getInputStream());
-            out = new DataOutputStream(client.getOutputStream());
-            final long startNanoTime = System.nanoTime();
 
+            final long startNanoTime = System.nanoTime();
             new AnimationTimer() {
                 public void handle(long currentNanoTime) {
 //                    double t = (currentNanoTime - startNanoTime) / 1000000000.0;
