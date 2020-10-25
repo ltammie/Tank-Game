@@ -32,14 +32,14 @@ public class ServerThread extends Thread {
 
 
 
-//                PackageToClient pc = new PackageToClient(ps.shiftX, hp, enemyHp);
-//                for (ServerThread s : Server.serverList){
-//                    if (s == this) {
-//                        continue;
-//                    }
-//                    s.out.writeObject(pc);
-//                    s.out.flush();
-//                }
+                PackageToClient pc = new PackageToClient(ps.shiftX, hp, enemyHp);
+                for (ServerThread s : Server.serverList){
+                    if (s == this) {
+                        continue;
+                    }
+                    s.out.writeObject(pc);
+                    s.out.flush();
+                }
             }
         } catch (IOException | ClassNotFoundException ignored) {
         }
