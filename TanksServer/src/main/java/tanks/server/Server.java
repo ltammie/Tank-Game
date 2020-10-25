@@ -27,6 +27,7 @@ public class Server {
                 }
             }
             for (ServerThread t : serverList) {
+                t.start();
                 t.out.writeBoolean(false);
             }
             while (true);
