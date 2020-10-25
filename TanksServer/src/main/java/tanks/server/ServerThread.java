@@ -34,6 +34,7 @@ public class ServerThread extends Thread {
             while (true) {
                 int shift = in.readInt();
                 boolean shot = in.readBoolean();
+                System.out.println(shot);
                 if (shot) {
                     bullets.add(new Point(360 + shift, 630));
                     enemyBulls.add(new Point(360 - shift, 50));
