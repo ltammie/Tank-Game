@@ -1,6 +1,8 @@
 package tanks.server;
 
-public class PackageToClient {
+import java.io.Serializable;
+
+public class PackageToClient  implements Serializable {
     int shiftX;
     int hp;
     int enemyHp;

@@ -1,12 +1,7 @@
 package tanks.server;
 
-
 import java.io.*;
 import java.net.Socket;
-
-
-
-
 
 public class ServerThread extends Thread {
     public ObjectInputStream in;
