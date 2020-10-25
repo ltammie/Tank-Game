@@ -28,9 +28,8 @@ public class ClientWindow {
 
         try {
             client = new Socket(ip, port);
-            in = new ObjectInputStream(client.getInputStream());
             out = new ObjectOutputStream(client.getOutputStream());
-
+            in = new ObjectInputStream(client.getInputStream());
             System.out.println("Connected?");
         } catch (IOException e) {
             System.out.println("failed to connect!");
@@ -107,7 +106,7 @@ public class ClientWindow {
                 newPos = 360 + shift.get();
 
                 try {
-                    PackageToServer ps = new PackageToServer(shift.get(), newPos, 650, isShot.get());
+                    PackageToServer ps = new PackageToServer(shift.get(), newPos, 650);
                     isShot.set(false);
                     out.writeObject(ps);
                     out.flush();
