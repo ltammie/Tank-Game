@@ -15,8 +15,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ClientWindow {
     private static Socket client;
-    private static ObjectInputStream in;
-    private static ObjectOutputStream out;
+    private static DataInputStream in;
+    private static DataOutputStream out;
     private Stage primaryStage;
 
     public ClientWindow(Stage primaryStage) {
@@ -28,8 +28,8 @@ public class ClientWindow {
 
         try {
             client = new Socket(ip, port);
-            out = new ObjectOutputStream(client.getOutputStream());
-            in = new ObjectInputStream(client.getInputStream());
+            in = new DataInputStream(client.getInputStream());
+            out = new DataOutputStream(client.getOutputStream());
             System.out.println("Connected?");
         } catch (IOException e) {
             System.out.println("failed to connect!");
