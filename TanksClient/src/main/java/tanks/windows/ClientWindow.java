@@ -1,19 +1,29 @@
 package tanks.windows;
 
-import tanks.app.Client;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
 
 public class ClientWindow {
-
-
     private static Socket client;
     private static BufferedReader in;
     private static BufferedWriter out;
+    private Stage primaryStage;
+
+    public ClientWindow(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
 
 
     public void start(String ip, int port){
+
+        primaryStage.setTitle("Game");
+        Group root = new Group();
+        root.getChildren().add(GameWindow.getGameCanvas());
+        primaryStage.setScene(new Scene(root));
 
         try {
             client = new Socket(ip, port);
