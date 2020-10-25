@@ -87,30 +87,30 @@ public class ClientWindow {
 //        new AnimationTimer() {
 //            public void handle(long currentNanoTime) {
 //                    double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-        while (true) {
-                int newPos = 360 + shift.get();
-                int enemyPos = 360;
-
-                try {
-                    out.write(newPos);
-                    out.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                try {
-                    enemyPos = in.readInt();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-                gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
-                gc.drawImage(tank, newPos, 650, 80, 100);
-                gc.drawImage(tank, enemyPos, 50, 80, 100);
-
-
-            }
+//        while (true) {
+//                int newPos = 360 + shift.get();
+//                int enemyPos = 360;
+//
+//                try {
+//                    out.write(newPos);
+//                    out.flush();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                try {
+//                    enemyPos = in.readInt();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//                gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
+//                gc.drawImage(tank, newPos, 650, 80, 100);
+//                gc.drawImage(tank, enemyPos, 50, 80, 100);
+//
+//
+//            }
 //        }.start();
     }
 
