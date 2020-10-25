@@ -126,26 +126,48 @@ public class ClientWindow {
                 int eb = 0;
                 try {
                     boolean flag = in.readBoolean();
-                    enemyPos -= in.readInt();
-                    hpValue = in.readInt();
-                    enemyHpValue = in.readInt();
-                    b = in.readInt();
-                    for (int i = 0; i < b; i++) {
-                        int x = in.readInt();
-                        int y = in.readInt();
-                        if (x == enemyPos && y == 30) {
-                            enemyHpValue -= 5;
+                    if (flag) {
+                        int tmp = 0;
+                        tmp -= in.readInt();
+                        tmp = in.readInt();
+                        tmp = in.readInt();
+                        b = in.readInt();
+                        for (int i = 0; i < b; i++) {
+                            int x = in.readInt();
+                            int y = in.readInt();
+                            if (x == tmp && y == 30) {
+                                tmp -= 5;
+                            }
                         }
-                        if (!flag) {
-                            gc.drawImage(bullet, x, y, 20, 20);
+
+                        eb = in.readInt();
+                        for (int i = 0; i < eb; i++) {
+                            int x = in.readInt();
+                            int y = in.readInt();
                         }
                     }
+                    else {
+                        enemyPos -= in.readInt();
+                        hpValue = in.readInt();
+                        enemyHpValue = in.readInt();
+                        b = in.readInt();
+                        for (int i = 0; i < b; i++) {
+                            int x = in.readInt();
+                            int y = in.readInt();
+                            if (x == enemyPos && y == 30) {
+                                enemyHpValue -= 5;
+                            }
+                            if (!flag) {
+                                gc.drawImage(bullet, x, y, 20, 20);
+                            }
+                        }
 
-                    eb = in.readInt();
-                    for (int i = 0; i < eb; i++) {
-                        int x = in.readInt();
-                        int y = in.readInt();
-                        gc.drawImage(eBullet, x, y, 20, 20);
+                        eb = in.readInt();
+                        for (int i = 0; i < eb; i++) {
+                            int x = in.readInt();
+                            int y = in.readInt();
+                            gc.drawImage(eBullet, x, y, 20, 20);
+                        }
                     }
                 } catch (IOException e) {
                 }
