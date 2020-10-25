@@ -11,6 +11,8 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 
 public class Menu {
 
@@ -34,7 +36,11 @@ public class Menu {
 
         EventHandler<ActionEvent> event = e -> {
             ClientWindow window = new ClientWindow(primaryStage);
-            window.start(serverIpField.getText(), Integer.parseInt(serverPortField.getText()));
+            try {
+                window.start(serverIpField.getText(), Integer.parseInt(serverPortField.getText()));
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         };
 
         Button connect = new Button("Connect");
