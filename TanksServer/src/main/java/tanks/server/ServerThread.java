@@ -5,14 +5,16 @@ import java.io.*;
 import java.net.Socket;
 
 public class ServerThread extends Thread {
-    private BufferedReader in;
-    private BufferedWriter out;
-    private Socket client;
+    public DataInputStream in;
+    public DataOutputStream out;
+    public Socket client;
+    public int id;
 
-    public ServerThread(Socket client) throws IOException {
+    public ServerThread(Socket client, int id) throws IOException {
         this.client = client;
-        in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-        out = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
+        in = new DataInputStream(client.getInputStream());
+        out = new DataOutputStream(client.getOutputStream());
+        this.id = id;
         start();
     }
 
@@ -20,13 +22,16 @@ public class ServerThread extends Thread {
     public void run() {
         String word;
         try {
-            send("Start messaging");
+            int playerPos = 0;
             while (true) {
-                word = read();
-                if (word.equals("Exit")) {
-                    break;
+                playerPos = in.readInt();
+                for (ServerThread s : Server.serverList){
+                    if (s == this) {
+                        continue;
+                    }
+                    s.out.write(playerPos);
+                    s.out.flush();
                 }
-                System.out.println(word);
             }
         } catch (IOException ignored) {
         }
@@ -44,19 +49,4 @@ public class ServerThread extends Thread {
         }
     }
 
-    public String read() throws IOException {
-        String text = in.readLine();
-        if (text == null) {
-            return "";
-        }
-        return text;
-    }
-
-    public void send(String message) throws IOException {
-        try {
-            out.write(message + "\n");
-            out.flush();
-        } catch (IOException ignored) {
-        }
-    }
 }

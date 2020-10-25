@@ -8,9 +8,9 @@ import java.util.LinkedList;
 public class Server {
     private static Socket clientSocket;
     private static ServerSocket server;
-
-
     public static LinkedList<ServerThread> serverList = new LinkedList<>();
+    public static int[] player = new int[2];
+
 
     public static void start(Integer port) throws IOException {
         try {
@@ -20,11 +20,18 @@ public class Server {
                 System.out.println("Waiting for player " + i);
                 clientSocket = server.accept();
                 try {
-                    serverList.add(new ServerThread(clientSocket));
+                    serverList.add(new ServerThread(clientSocket, i));
                 } catch (IOException ignored) {
                     clientSocket.close();
                 }
             }
+            for (ServerThread t : serverList) {
+                t.out.writeBoolean(false);
+            }
+            while (true);
+
+
+
         } finally {
             server.close();
             System.out.println("Server stopped working");
