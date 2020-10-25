@@ -27,9 +27,6 @@ public class Server {
                 }
             }
             for (ServerThread t : serverList) {
-                PackageToClient pc = new PackageToClient(0, 100, 100);
-                t.out.writeObject(pc);
-                t.out.flush();
                 t.start();
             }
 
