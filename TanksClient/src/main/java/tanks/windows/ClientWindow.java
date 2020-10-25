@@ -111,9 +111,6 @@ public class ClientWindow {
                 gc.drawImage(tank, newPos, 650, 80, 100);
                 gc.drawImage(enemy, enemyPos, 50, 80, 100);
                 primaryStage.show();
-
-
-
         }
 //        }.start();
     }
