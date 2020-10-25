@@ -1,10 +1,16 @@
 package tanks.windows;
 
+import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -24,19 +30,26 @@ public class ClientWindow {
     public void start(String ip, int port){
 
         primaryStage.setTitle("Game");
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(800);
+        primaryStage.setResizable(false);
 
         Group root = new Group();
-        Scene scene = new Scene(root);
+        Scene theScene = new Scene( root );
+        primaryStage.setScene( theScene );
 
-
-        Canvas canvas = GameWindow.getGameCanvas();
+        Canvas canvas = new Canvas(800, 800);
         root.getChildren().add(canvas);
-        root.setStyle("-fx-background-color: red");
-//        GraphicsContext gc = canvas.getGraphicsContext2D();
-//
-//        gc.setFill(Color.RED );
-        primaryStage.setScene(scene);
-//        primaryStage.show();
+
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        Image field = new Image( "/images/field.png" );
+        Image tank = new Image( "/images/player.png" );
+
+
+        gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
+        gc.drawImage(tank, 360, 650, 80, 100);
+        primaryStage.show();
 
         try {
             client = new Socket(ip, port);
@@ -48,6 +61,21 @@ public class ClientWindow {
             in = new BufferedReader(new InputStreamReader(client.getInputStream()));
             out = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
             System.out.println(read());
+            final long startNanoTime = System.nanoTime();
+
+            new AnimationTimer()
+            {
+                public void handle(long currentNanoTime)
+                {
+
+
+                    double t = (currentNanoTime - startNanoTime) / 1000000000.0;
+                    double x = 232 + 128 * Math.cos(t);
+
+                    gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
+                    gc.drawImage(tank, x, 650, 80, 100);
+                }
+            }.start();
         } catch (IOException e) {
             System.err.println(e.toString());
             ClientWindow.stopThread();
