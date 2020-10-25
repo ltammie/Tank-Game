@@ -124,10 +124,10 @@ public class ClientWindow {
                 gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
                 gc.drawImage(tank, newPos, 650, 80, 100);
                 gc.drawImage(enemy, enemyPos, 30, 80, 100);
-                gc.drawImage(hp, 10, 30, hpValue, 20);
-                gc.drawImage(borderHP, 10, 30, 100, 20);
-                gc.drawImage(enemyHP, 10, 30, enemyHpValue, 20);
-                gc.drawImage(enemyBorder, 10, 30, 10, 20);
+                gc.drawImage(hp, 10, 700, hpValue, 20);
+                gc.drawImage(borderHP, 10, 700, 100, 20);
+                gc.drawImage(enemyHP, 10, 650, enemyHpValue, 20);
+                gc.drawImage(enemyBorder, 10, 650, 10, 20);
 
             }
         }.start();
