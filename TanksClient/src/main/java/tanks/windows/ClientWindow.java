@@ -30,6 +30,7 @@ public class ClientWindow {
             client = new Socket(ip, port);
             in = new ObjectInputStream(client.getInputStream());
             out = new ObjectOutputStream(client.getOutputStream());
+            System.out.println("Connected?");
         } catch (IOException e) {
             System.out.println("failed to connect!");
             System.exit(-1);
