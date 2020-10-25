@@ -30,7 +30,7 @@ public class ServerThread extends Thread {
                     if (s == this) {
                         continue;
                     }
-                    s.out.write(playerPos);
+                    s.out.writeInt(playerPos);
                     s.out.flush();
                 }
             }
