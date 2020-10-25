@@ -111,7 +111,6 @@ public class ClientWindow {
                     out.writeObject(ps);
                     out.flush();
                 } catch (IOException e) {
-                    e.printStackTrace();
                 }
 
                 PackageToClient pc;
