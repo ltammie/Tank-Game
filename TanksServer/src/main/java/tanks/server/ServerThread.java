@@ -12,9 +12,8 @@ public class ServerThread extends Thread {
 
     public ServerThread(Socket client, int id) throws IOException {
         this.client = client;
-        in = new ObjectInputStream(client.getInputStream());
         out = new ObjectOutputStream(client.getOutputStream());
-
+        in = new ObjectInputStream(client.getInputStream());
         isPlaying = false;
         this.id = id;
     }
@@ -30,7 +29,6 @@ public class ServerThread extends Thread {
 
                 System.out.println(id);
                 System.out.println(ps.shiftX);
-                System.out.println(ps.isShot);
 
 
 
