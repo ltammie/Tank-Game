@@ -4,6 +4,7 @@ public class PackageToClient {
     int shiftX;
     int hp;
     int enemyHp;
+    boolean gameStarted;
 
     public PackageToClient(int shiftX, int hp, int enemyHp) {
         this.shiftX = shiftX;

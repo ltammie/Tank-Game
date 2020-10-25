@@ -24,7 +24,7 @@ public class ClientWindow {
     }
 
 
-    public void start(String ip, int port) throws IOException {
+    public void start(String ip, int port) throws IOException, ClassNotFoundException {
 
         try {
             client = new Socket(ip, port);
@@ -88,8 +88,13 @@ public class ClientWindow {
         gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
         gc.drawImage(tank, 360, 650, 80, 100);
         primaryStage.show();
-//
-        while (!in.readBoolean()) ;
+
+        while (true) {
+            PackageToClient initPc = (PackageToClient) in.readObject();
+            if (initPc.gameStarted) {
+                break;
+            }
+        }
         System.out.println("connected");
 
         final long startNanoTime = System.nanoTime();

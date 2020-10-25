@@ -38,7 +38,7 @@ public class Menu {
             ClientWindow window = new ClientWindow(primaryStage);
             try {
                 window.start(serverIpField.getText(), Integer.parseInt(serverPortField.getText()));
-            } catch (IOException ioException) {
+            } catch (IOException | ClassNotFoundException ioException) {
                 ioException.printStackTrace();
             }
         };
