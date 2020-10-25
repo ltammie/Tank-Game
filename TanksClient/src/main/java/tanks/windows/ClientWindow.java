@@ -128,8 +128,8 @@ public class ClientWindow {
                 gc.drawImage(hp, 10, 750, hpValue, 20);
                 gc.drawImage(borderHP, 10, 750, 110, 30);
 
-                gc.drawImage(enemyHP, 650, 30, enemyHpValue, 20);
-                gc.drawImage(enemyBorder, 650, 30, 110, 30);
+                gc.drawImage(enemyHP, 650, 15, enemyHpValue, 20);
+                gc.drawImage(enemyBorder, 650, 15, 110, 30);
 
             }
         }.start();
