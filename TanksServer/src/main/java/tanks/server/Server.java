@@ -28,7 +28,9 @@ public class Server {
             }
             for (ServerThread t : serverList) {
                 t.start();
-                t.out.writeBoolean(true);
+                PackageToClient pc = new PackageToClient(0, 100, 100);
+                pc.gameStarted = true;
+                t.out.writeObject(pc);
             }
 
 
