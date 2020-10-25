@@ -29,13 +29,9 @@ public class Server {
                 t.out.writeBoolean(true);
                 t.start();
             }
-
-
+            while (true);
 
         } finally {
-            for (ServerThread t : serverList) {
-                t.join();
-            }
             server.close();
             System.out.println("Server stopped working");
         }
