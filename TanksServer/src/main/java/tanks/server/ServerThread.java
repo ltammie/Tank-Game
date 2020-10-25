@@ -65,6 +65,11 @@ public class ServerThread extends Thread {
                 }
 
                 for (ServerThread s : Server.serverList){
+                    if (s == this) {
+                        s.out.writeBoolean(true);
+                    } else {
+                        s.out.writeBoolean(false);
+                    }
                     s.out.writeInt(shift);
                     s.out.writeInt(hp);
                     s.out.writeInt(enemyHp);
