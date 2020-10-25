@@ -90,9 +90,10 @@ public class ClientWindow {
         gc.drawImage(tank, 360, 650, 80, 100);
         primaryStage.show();
 
-//        while (!((PackageToClient) in.readObject()).gameStarted) {
-//            System.out.println("kek");
-//        }
+        while (true) {
+            if (in.readBoolean())
+                break;
+        }
         System.out.println("connected");
 
         final long startNanoTime = System.nanoTime();
@@ -106,22 +107,20 @@ public class ClientWindow {
                 newPos = 360 + shift.get();
 
                 try {
-                    PackageToServer ps = new PackageToServer(shift.get(), newPos, 650);
-                    isShot.set(false);
-                    out.writeObject(ps);
+                    out.writeInt(shift.get());
+                    out.writeBoolean(isShot.get());
                     out.flush();
+                    isShot.set(false);
                 } catch (IOException e) {
                 }
 
-                PackageToClient pc;
                 int hpValue = 100;
                 int enemyHpValue = 100;
                 try {
-                    pc = (PackageToClient) in.readObject();
-                    enemyPos -= pc.shiftX;
-                    hpValue = pc.hp;
-                    enemyHpValue = pc.enemyHp;
-                } catch (IOException | ClassNotFoundException e) {
+                    enemyPos -= in.readInt();
+                    hpValue = in.readInt();
+                    enemyHpValue = in.readInt();
+                } catch (IOException e) {
                 }
 
 
