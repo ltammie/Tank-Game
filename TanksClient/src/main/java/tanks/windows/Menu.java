@@ -24,10 +24,13 @@ public class Menu {
         Label serverIpLabel = new Label("IP-address");
         TextField serverIpField = new TextField();
         serverIpField.setTooltip(new Tooltip("Enter server ip-address"));
+        serverIpField.setText("localhost");
 
         Label portLabel = new Label("Port");
         TextField serverPortField = new TextField();
         serverPortField.setTooltip(new Tooltip("Enter servers port to connect"));
+        serverPortField.setText("8081");
+
 
         EventHandler<ActionEvent> event = e -> {
             ClientWindow window = new ClientWindow(primaryStage);

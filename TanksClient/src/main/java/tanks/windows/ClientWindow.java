@@ -2,6 +2,9 @@ package tanks.windows;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -21,9 +24,19 @@ public class ClientWindow {
     public void start(String ip, int port){
 
         primaryStage.setTitle("Game");
+
         Group root = new Group();
-        root.getChildren().add(GameWindow.getGameCanvas());
-        primaryStage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+
+
+        Canvas canvas = GameWindow.getGameCanvas();
+        root.getChildren().add(canvas);
+        root.setStyle("-fx-background-color: red");
+//        GraphicsContext gc = canvas.getGraphicsContext2D();
+//
+//        gc.setFill(Color.RED );
+        primaryStage.setScene(scene);
+//        primaryStage.show();
 
         try {
             client = new Socket(ip, port);
