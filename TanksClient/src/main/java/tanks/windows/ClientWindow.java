@@ -173,6 +173,7 @@ public class ClientWindow {
 
 
 
+
                 gc.drawImage(tank, newPos, 650, 80, 100);
                 gc.drawImage(enemy, enemyPos, 30, 80, 100);
 
