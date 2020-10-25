@@ -26,10 +26,10 @@ public class Server {
                     clientSocket.close();
                 }
             }
-//            for (ServerThread t : serverList) {
-//                t.start();
-////                t.out.writeBoolean(false);
-//            }
+            for (ServerThread t : serverList) {
+                t.start();
+                t.out.writeBoolean(true);
+            }
             while (true);
 
 

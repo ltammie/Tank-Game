@@ -9,18 +9,18 @@ public class ServerThread extends Thread {
     public DataOutputStream out;
     public Socket client;
     public int id;
+    public boolean isPlaying;
 
     public ServerThread(Socket client, int id) throws IOException {
         this.client = client;
         in = new DataInputStream(client.getInputStream());
         out = new DataOutputStream(client.getOutputStream());
+        isPlaying = false;
         this.id = id;
-        this.start();
     }
 
     @Override
     public void run() {
-        String word;
         try {
             int playerPos = 0;
             while (true) {
