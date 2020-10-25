@@ -21,6 +21,7 @@ public class Server {
                 clientSocket = server.accept();
                 try {
                     serverList.add(new ServerThread(clientSocket, i));
+                    System.out.println("Added player " + i);
                 } catch (IOException ignored) {
                     clientSocket.close();
                 }
