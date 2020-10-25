@@ -94,14 +94,14 @@ public class ClientWindow {
                 newPos = 360 + shift.get();
 
                 try {
-                    out.writeInt(newPos);
+                    out.writeInt(shift.get());
                     out.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
                 try {
-                    enemyPos = in.readInt();
+                    enemyPos -= in.readInt();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
