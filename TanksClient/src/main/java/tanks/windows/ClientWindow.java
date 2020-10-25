@@ -158,6 +158,13 @@ public class ClientWindow {
                 gc.drawImage(enemyHP, 650, 15, enemyHpValue, 20);
                 gc.drawImage(enemyBorder, 650, 15, 110, 30);
 
+                if (enemyHpValue <= 0) {
+                    gc.drawImage(boom, enemyPos, 30, 80, 100);
+                }
+                if (hpValue <= 0) {
+                    gc.drawImage(boom, newPos, 650, 80, 100);
+                }
+
             }
         }.start();
     }
