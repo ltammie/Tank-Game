@@ -8,14 +8,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
-import java.text.Format;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -189,24 +185,6 @@ public class ClientWindow {
             }
         };
         at.start();
-
-
-        if (status.get()) {
-
-
-
-        }
-
-    }
-
-
-    private void showAlertWithHeaderText() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Test Connection");
-        alert.setHeaderText("Results:");
-        alert.setContentText("Connect to the database successfully!");
-
-        alert.showAndWait();
     }
 
     private static void stopThread() {
