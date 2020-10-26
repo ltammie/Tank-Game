@@ -5,6 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -25,6 +26,7 @@ public class ClientWindow {
     public ClientWindow(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+
 
 
     public void start(String ip, int port) throws IOException {
@@ -165,6 +167,10 @@ public class ClientWindow {
             }
         }.start();
 
+        System.out.println(status.get());
+        showAlertWithHeaderText();
+
+
         if (status.get()) {
 //            int shots1 = in.readInt();
 //            int hit1 = in.readInt();
@@ -174,16 +180,19 @@ public class ClientWindow {
 //            int mis1 = shots1 - hit1;
 //            int mis2 = shots2 - hit2;
 
-            final Stage dialog = new Stage();
-            dialog.initModality(Modality.APPLICATION_MODAL);
-            dialog.initOwner(primaryStage);
-            VBox dialogVbox = new VBox(20);
-            dialogVbox.getChildren().add(new Text("This is a Dialog"));
-            Scene dialogScene = new Scene(dialogVbox, 300, 200);
-            dialog.setScene(dialogScene);
-            dialog.showAndWait();
+
         }
 
+    }
+
+
+    private void showAlertWithHeaderText() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Test Connection");
+        alert.setHeaderText("Results:");
+        alert.setContentText("Connect to the database successfully!");
+
+        alert.showAndWait();
     }
 
     private static void stopThread() {
