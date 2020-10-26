@@ -153,6 +153,9 @@ public class Server {
                     out2.writeInt(800 - p.y);
                 }
 
+                boolean status = hp1 <= 0 || hp2 <= 0;
+                out1.writeBoolean(status);
+                out2.writeBoolean(status);
                 out1.flush();
                 out2.flush();
             } catch (IOException e) {
