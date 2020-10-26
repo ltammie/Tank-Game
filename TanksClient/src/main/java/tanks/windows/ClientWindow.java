@@ -124,14 +124,14 @@ public class ClientWindow {
                     for (int i = 0; i < b; i++){
                         int x = in.readInt();
                         int y = in.readInt();
-                        System.out.println(x + " " + y);
+                        System.out.println("p " + x + " " + y);
                         gc.drawImage(bullet, x, y, 10, 10);
                     }
                     eb = in.readInt();
                     for (int i = 0; i < eb; i++){
                         int x = in.readInt();
                         int y = in.readInt();
-                        System.out.println(x + " " + y);
+                        System.out.println("e " + x + " " + y);
                         gc.drawImage(eBullet, x, y, 10, 10);
                     }
                 } catch (IOException e) {
