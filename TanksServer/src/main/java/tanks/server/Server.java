@@ -22,7 +22,8 @@ public class Server {
     private DataInputStream in2;
     private DataOutputStream out2;
 
-    @Autowired StatRep  statRep;
+    @Autowired
+    StatRep  statRep;
 
     public void start(int port) throws IOException {
         try {

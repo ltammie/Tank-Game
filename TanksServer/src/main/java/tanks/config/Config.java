@@ -12,7 +12,7 @@ import tanks.server.StatRep;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan(basePackages = "edu.school21.sockets")
+@ComponentScan(basePackages = "tanks")
 @PropertySource("classpath:db.properties")
 public class Config {
 
