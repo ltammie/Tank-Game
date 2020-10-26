@@ -167,7 +167,9 @@ public class ClientWindow {
             }
         }.start();
 
-        System.out.println(status.get());
+        while (!status.get()) {
+            System.out.println(status.get());
+        }
         showAlertWithHeaderText();
 
 
