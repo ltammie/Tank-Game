@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class TankServer {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ConsoleArguments console = new ConsoleArguments();
         JCommander.newBuilder().addObject(console).build().parse(args);
 

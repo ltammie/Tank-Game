@@ -29,7 +29,7 @@ public class Server {
         }
     }
 
-    public void start() {
+    public void start() throws IOException {
         try {
             System.out.println("Waiting for player one!");
             c1 = serverSocket.accept();
@@ -97,10 +97,9 @@ public class Server {
                 }
             }
 
-
             i = bullets2.iterator();
             while (i.hasNext()) {
-                Point p = i.next(); // must be called before you can call i.remove()
+                Point p = i.next();
                 p.y += 10;
                 if (p.y == 650) {
                     if (p.x > 360 + shift1 && p.x < 360 + shift1 + 80) {
@@ -158,9 +157,16 @@ public class Server {
                 out2.writeBoolean(status);
                 out1.flush();
                 out2.flush();
+                if (status) {
+                    break;
+                }
             } catch (IOException e) {
                 System.err.println("Failed to send to client");
                 System.err.println(e.getMessage());
+            } finally {
+                c1.close();
+                c2.close();
+                serverSocket.close();
             }
         }
     }
