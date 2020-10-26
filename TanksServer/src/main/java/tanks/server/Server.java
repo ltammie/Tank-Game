@@ -1,5 +1,8 @@
 package tanks.server;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.awt.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,6 +12,7 @@ import java.net.Socket;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+@Component
 public class Server {
     private ServerSocket serverSocket;
     private Socket c1;
@@ -18,7 +22,9 @@ public class Server {
     private DataInputStream in2;
     private DataOutputStream out2;
 
-    public Server(int port) {
+    @Autowired StatRep  statRep;
+
+    public void start(int port) throws IOException {
         try {
             this.serverSocket = new ServerSocket(port);
             System.out.println("Server running!");
@@ -27,9 +33,6 @@ public class Server {
             System.err.println(e.getMessage());
             System.exit(-1);
         }
-    }
-
-    public void start() throws IOException {
         try {
             System.out.println("Waiting for player one!");
             c1 = serverSocket.accept();
