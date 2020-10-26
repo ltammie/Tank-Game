@@ -163,12 +163,12 @@ public class Server {
             } catch (IOException e) {
                 System.err.println("Failed to send to client");
                 System.err.println(e.getMessage());
-            } finally {
-                c1.close();
-                c2.close();
-                serverSocket.close();
             }
         }
+        System.out.println("tt");
+        c1.close();
+        c2.close();
+        serverSocket.close();
     }
 }
 
