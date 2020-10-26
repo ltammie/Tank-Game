@@ -83,9 +83,9 @@ public class ClientWindow {
                         primaryStage.close();
                     }
                     if (code.equals("SPACE")) {
-                        if (isShot.get() <= 0) {
+//                        if (isShot.get() <= 0) {
                             isShot.set(5);
-                        }
+//                        }
                     }
                 });
 
@@ -124,14 +124,16 @@ public class ClientWindow {
                     for (int i = 0; i < b; i++){
                         int x = in.readInt();
                         int y = in.readInt();
+                        System.out.println(x + " " + y);
                         gc.drawImage(bullet, x, y, 10, 10);
                     }
-//                    eb = in.readInt();
-//                    for (int i = 0; i < eb; i++){
-//                        int x = in.readInt();
-//                        int y = in.readInt();
-//                        gc.drawImage(eBullet, x, y, 10, 10);
-//                    }
+                    eb = in.readInt();
+                    for (int i = 0; i < eb; i++){
+                        int x = in.readInt();
+                        int y = in.readInt();
+                        System.out.println(x + " " + y);
+                        gc.drawImage(eBullet, x, y, 10, 10);
+                    }
                 } catch (IOException e) {
                     System.err.println("Failed to read from server!");
                     System.err.println(e.getMessage());
