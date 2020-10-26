@@ -1,5 +1,6 @@
 package tanks.server;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -22,9 +23,20 @@ class StatMapper implements RowMapper<Stat> {
 @Component
 public class StatRep {
     private final JdbcTemplate jdbcTemplate;
-    private static final String SQL_SAVE = "INSERT INTO users (login, password) VALUES (?, ?)";
+    private static final String SQL_SAVE = "INSERT INTO stats (shots, hits, misses) VALUES (?, ?, ?)";
 
     public StatRep(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    public Boolean save(Stat entity) {
+        int rowsSaved;
+        try {
+            rowsSaved = jdbcTemplate.update(SQL_SAVE, entity.getShots(), entity.getHits(), entity.getMisses());
+            return rowsSaved > 0;
+        } catch (DataAccessException e) {
+            System.err.println("Cant save " + entity.toString());
+        }
+        return false;
     }
 }
