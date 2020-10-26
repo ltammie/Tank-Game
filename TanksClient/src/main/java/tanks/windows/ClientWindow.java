@@ -173,7 +173,8 @@ public class ClientWindow {
 //            int mis2 = shots2 - hit2;
 
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+//            stage.setScene(new Scene(root));
+            stage.initOwner(primaryStage);
             stage.setTitle("My modal window");
             stage.initModality(Modality.WINDOW_MODAL);
             stage.show();
