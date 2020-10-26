@@ -60,7 +60,7 @@ public class ClientWindow {
         Image boom = new Image("/images/fail.png");
 
         AtomicInteger shift = new AtomicInteger(0);
-        AtomicInteger isShot = new AtomicBoolean(0);
+        AtomicInteger isShot = new AtomicInteger(0);
 
         theScene.setOnKeyPressed(
                 e -> {
@@ -84,7 +84,7 @@ public class ClientWindow {
                         primaryStage.close();
                     }
                     if (code.equals("SPACE")) {
-                        if (isShot == 0) {
+                        if (isShot.get() == 0) {
                             isShot.set(5);
                         }
                     }
@@ -129,10 +129,7 @@ public class ClientWindow {
                     System.err.println("Failed to read from server!");
                     System.err.println(e.getMessage());
                 }
-
-                if (isShot == 5){
-
-                }
+                isShot.set(isShot.get() - 1);
 
                 gc.drawImage(player, newPos, 650, 80, 100);
                 gc.drawImage(enemy, enemyPos, 30, 80, 100);
