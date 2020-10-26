@@ -6,6 +6,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Server {
@@ -58,17 +59,57 @@ public class Server {
 
         int shift1 = 0;
         int shift2 = 0;
-        int hp1 = 0;
-        int hp2 = 0;
+        int hp1 = 100;
+        int hp2 = 100;
+        int shot1 = 0;
+        int shot2 = 0;
 
         while (true) {
 
             try {
                 shift1 = in1.readInt();
+                shot1 = in1.readInt();
                 shift2 = in2.readInt();
+                shot2 = in2.readInt();
             } catch (IOException e) {
                 System.err.println("Failed to read from client");
                 System.err.println(e.getMessage());
+            }
+
+            if (shot1 == 5) {
+                bullets1.add(new Point(360 + shift1, 630));
+            }
+            if (shot2 == 5) {
+                bullets2.add(new Point(360 - shift2, 50));
+            }
+
+            Iterator<Point> i = bullets1.iterator();
+            while (i.hasNext()) {
+                Point p = i.next();
+                p.y -= 10;
+                if (p.y == 30) {
+                    if (p.x == 360 - shift2) {
+                        hp2 -= 5;
+                    }
+                }
+                if (p.y < 0) {
+                    i.remove();
+                }
+            }
+
+
+            i = bullets2.iterator();
+            while (i.hasNext()) {
+                Point p = i.next(); // must be called before you can call i.remove()
+                p.y += 10;
+                if (p.y == 650) {
+                    if (p.x == 360 + shift1) {
+                        hp1 -= 5;
+                    }
+                }
+                if (p.y > 800) {
+                    i.remove();
+                }
             }
 
             try {
@@ -77,11 +118,32 @@ public class Server {
                 out1.writeInt(hp1);
                 out1.writeInt(hp2);
 
+                out1.writeInt(bullets1.size());
+                for (Point p : bullets1) {
+                    out1.writeInt(p.x);
+                    out1.writeInt(p.y);
+                }
+                out1.writeInt(bullets2.size());
+                for (Point p : bullets2) {
+                    out1.writeInt(p.x);
+                    out1.writeInt(p.y);
+                }
+
                 out2.writeInt(360 + shift2);
                 out2.writeInt(360 - shift1);
                 out2.writeInt(hp2);
                 out2.writeInt(hp1);
 
+                out2.writeInt(bullets2.size());
+                for (Point p : bullets2) {
+                    out2.writeInt(p.x);
+                    out2.writeInt(p.y);
+                }
+                out2.writeInt(bullets1.size());
+                for (Point p : bullets1) {
+                    out2.writeInt(p.x);
+                    out2.writeInt(p.y);
+                }
 
 
                 out1.flush();
