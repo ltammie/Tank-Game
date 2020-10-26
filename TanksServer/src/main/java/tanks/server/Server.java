@@ -64,6 +64,13 @@ public class Server {
         int shot1 = 0;
         int shot2 = 0;
 
+        int countShot1 = 0;
+        int countShot2 = 0;
+
+        int countHit1 = 0;
+        int countHit2 = 0;
+
+
         while (true) {
             try {
                 shift1 = in1.readInt();
@@ -77,9 +84,11 @@ public class Server {
 
             if (shot1 == 5) {
                 bullets1.add(new Point(360 + (shift1 + 40), 630));
+                countShot1++;
             }
             if (shot2 == 5) {
                 bullets2.add(new Point(360 - shift2 + 40, 50));
+                countShot2++;
             }
 
             Iterator<Point> i = bullets1.iterator();
@@ -89,7 +98,8 @@ public class Server {
                 if (p.y == 50) {
                     if (p.x > 360 - shift2 && p.x < 360 - shift2 + 80) {
                         hp2 -= 5;
-                            i.remove();
+                        i.remove();
+                        countHit1++;
                     }
                 }
                 if (p.y < 0) {
@@ -104,6 +114,7 @@ public class Server {
                 if (p.y == 650) {
                     if (p.x > 360 + shift1 && p.x < 360 + shift1 + 80) {
                         hp1 -= 5;
+                        countHit2++;
                         i.remove();
                     }
                 }
@@ -165,6 +176,17 @@ public class Server {
                 System.err.println(e.getMessage());
             }
         }
+
+        out1.writeInt(countShot1);
+        out1.writeInt(countShot2);
+        out1.writeInt(countHit1);
+        out1.writeInt(countHit2);
+
+        out2.writeInt(countShot2);
+        out2.writeInt(countShot1);
+        out2.writeInt(countHit2);
+        out2.writeInt(countHit1);
+
         System.out.println("tt");
         c1.close();
         c2.close();
