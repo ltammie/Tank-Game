@@ -60,7 +60,7 @@ public class ClientWindow {
         Image boom = new Image("/images/fail.png");
 
         AtomicInteger shift = new AtomicInteger(0);
-        AtomicBoolean isShot = new AtomicBoolean(false);
+        AtomicInteger isShot = new AtomicBoolean(0);
 
         theScene.setOnKeyPressed(
                 e -> {
@@ -84,8 +84,8 @@ public class ClientWindow {
                         primaryStage.close();
                     }
                     if (code.equals("SPACE")) {
-                        if (!isShot.get()) {
-                            isShot.set(true);
+                        if (isShot == 0) {
+                            isShot.set(5);
                         }
                     }
                 });
@@ -95,10 +95,10 @@ public class ClientWindow {
         gc.drawImage(player, 360, 650, 80, 100);
         primaryStage.show();
 
-        while (true) {
-            if (in.readBoolean())
-                break;
-        }
+//        while (true) {
+//            if (in.readBoolean())
+//                break;
+//        }
         System.out.println("connected");
 
         final long startNanoTime = System.nanoTime();
@@ -128,6 +128,10 @@ public class ClientWindow {
                 } catch (IOException e) {
                     System.err.println("Failed to read from server!");
                     System.err.println(e.getMessage());
+                }
+
+                if (isShot == 5){
+
                 }
 
                 gc.drawImage(player, newPos, 650, 80, 100);
@@ -222,47 +226,6 @@ public class ClientWindow {
         }
     }
 
-    private static class ReadMsg extends Thread {
-//
-//        @Override
-//        public void run() {
-//            String str;
-//            try {
-//                while (true) {
-//                    str = read();
-//                    if (str.equals("Exit")) {
-//                        ClientWindow.stopThread();
-//                        break;
-//                    }
-//                    System.out.println(str);
-//                }
-//            } catch (IOException e) {
-//                ClientWindow.stopThread();
-//            }
-//        }
-    }
-
-    public static class WriteMsg extends Thread {
-
-//        @Override
-//        public void run() {
-//            while (true) {
-//                String userWord;
-//                try {
-//                    userWord = scanner.nextLine();
-//                    if (userWord.equals("Exit")) {
-//                        send("Exit");
-//                        Client.stopThread();
-//                        break;
-//                    } else {
-//                        send(userWord);
-//                    }
-//                } catch (IOException e) {
-//                    Client.stopThread();
-//                }
-//            }
-//        }
-    }
 }
 
 
