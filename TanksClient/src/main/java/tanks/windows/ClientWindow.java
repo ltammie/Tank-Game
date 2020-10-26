@@ -167,13 +167,17 @@ public class ClientWindow {
             }
         }.start();
 
-        while (!status.get()) {
-            System.out.println(status.get());
-        }
-        showAlertWithHeaderText();
+        new AnimationTimer() {
+            public void handle(long currentNanoTime) {
+                System.out.println(status.get());
+                if (!status.get()) {
+                    showAlertWithHeaderText();
+                }
+            }
+        }.start();
 
 
-        if (status.get()) {
+//        if (status.get()) {
 //            int shots1 = in.readInt();
 //            int hit1 = in.readInt();
 //            int shots2 = in.readInt();
@@ -183,7 +187,7 @@ public class ClientWindow {
 //            int mis2 = shots2 - hit2;
 
 
-        }
+//        }
 
     }
 
