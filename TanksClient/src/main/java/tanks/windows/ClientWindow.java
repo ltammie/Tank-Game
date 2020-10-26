@@ -126,12 +126,12 @@ public class ClientWindow {
                         int y = in.readInt();
                         gc.drawImage(bullet, x, y, 10, 10);
                     }
-                    eb = in.readInt();
-                    for (int i = 0; i < eb; i++){
-                        int x = in.readInt();
-                        int y = in.readInt();
-                        gc.drawImage(eBullet, x, y, 10, 10);
-                    }
+//                    eb = in.readInt();
+//                    for (int i = 0; i < eb; i++){
+//                        int x = in.readInt();
+//                        int y = in.readInt();
+//                        gc.drawImage(eBullet, x, y, 10, 10);
+//                    }
                 } catch (IOException e) {
                     System.err.println("Failed to read from server!");
                     System.err.println(e.getMessage());
