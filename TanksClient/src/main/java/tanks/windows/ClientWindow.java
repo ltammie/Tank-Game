@@ -171,8 +171,8 @@ public class ClientWindow {
                     int mis2 = 0;
                     try {
                         shots1 = in.readInt();
-                        hit1 = in.readInt();
                         shots2 = in.readInt();
+                        hit1 = in.readInt();
                         hit2 = in.readInt();
 
                         mis1 = shots1 - hit1;
