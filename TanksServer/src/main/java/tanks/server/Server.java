@@ -144,14 +144,14 @@ public class Server {
 
                 out2.writeInt(bullets2.size());
                 for (Point p : bullets2) {
-                    out2.writeInt(p.x);
-                    out2.writeInt(p.y);
+                    out2.writeInt(800 - p.x);
+                    out2.writeInt(800 - p.y);
                 }
 
                 out2.writeInt(bullets1.size());
                 for (Point p : bullets1) {
-                    out2.writeInt(p.x);
-                    out2.writeInt(p.y);
+                    out2.writeInt(800 - p.x);
+                    out2.writeInt(800 - p.y);
                 }
 
                 out1.flush();
