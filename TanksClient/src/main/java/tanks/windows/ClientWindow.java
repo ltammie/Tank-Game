@@ -161,7 +161,8 @@ public class ClientWindow {
                         gc.drawImage(boom, enemyPos, 30, 80, 100);
                     }
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Hi there");
-                    Platform.runLater(alert::showAndWait);
+                    Platform.runLater(alert::show);
+                    this.stop();
                 }
             }
         };
