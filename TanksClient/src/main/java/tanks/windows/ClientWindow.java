@@ -136,6 +136,25 @@ public class ClientWindow {
 
                 gc.drawImage(enemyHp, 650, 15, enHpValue, 20);
                 gc.drawImage(border, 640, 10, 120, 49);
+                try {
+                    int b = 0;
+                    int eb = 0;
+                    b = in.readInt();
+                    for (int i = 0; i < b; i++){
+                        int x = in.readInt();
+                        int y = in.readInt();
+                        gc.drawImage(bullet, x, y, 10, 10);
+                    }
+                    eb = in.readInt();
+                    for (int i = 0; i < eb; i++){
+                        int x = in.readInt();
+                        int y = in.readInt();
+                        gc.drawImage(eBullet, x, y, 10, 10);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
 //
 //                if (enemyHpValue <= 0) {
 //                    gc.drawImage(boom, enemyPos, 30, 80, 100);
