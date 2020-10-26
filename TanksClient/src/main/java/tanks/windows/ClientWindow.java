@@ -170,7 +170,7 @@ public class ClientWindow {
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 System.out.println(status.get());
-                if (!status.get()) {
+                if (status.get()) {
                     showAlertWithHeaderText();
                 }
             }
