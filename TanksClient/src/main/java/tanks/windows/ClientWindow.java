@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -172,12 +174,14 @@ public class ClientWindow {
 //            int mis1 = shots1 - hit1;
 //            int mis2 = shots2 - hit2;
 
-            Stage stage = new Stage();
-//            stage.setScene(new Scene(root));
-            stage.initOwner(primaryStage);
-            stage.setTitle("My modal window");
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.show();
+            final Stage dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(primaryStage);
+            VBox dialogVbox = new VBox(20);
+            dialogVbox.getChildren().add(new Text("This is a Dialog"));
+            Scene dialogScene = new Scene(dialogVbox, 300, 200);
+            dialog.setScene(dialogScene);
+            dialog.show();
         }
 
     }
