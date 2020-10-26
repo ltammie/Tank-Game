@@ -190,8 +190,8 @@ public class Server {
         out2.writeInt(countHit2);
         out2.writeInt(countHit1);
 
-        statRep.save(new Stat(countShot1, countHit1, countShot1 - countHit1));
-        statRep.save(new Stat(countShot2, countHit2, countShot2 - countHit2));
+        statRep.save(new Stat(1, countShot1, countHit1, countShot1 - countHit1));
+        statRep.save(new Stat(2, countShot2, countHit2, countShot2 - countHit2));
 
         System.out.println("tt");
     }
