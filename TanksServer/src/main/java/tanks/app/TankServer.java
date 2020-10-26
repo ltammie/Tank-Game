@@ -14,7 +14,7 @@ public class TankServer {
         JCommander.newBuilder().addObject(console).build().parse(args);
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
-
+        Server server = context.getBean(Server.class);
         server.start(console.getPort());
     }
 }

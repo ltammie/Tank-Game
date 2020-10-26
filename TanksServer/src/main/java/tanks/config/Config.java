@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import tanks.server.StatRep;
 
 import javax.sql.DataSource;
 
@@ -27,15 +28,10 @@ public class Config {
     @Value("${db.driver.name}")
     private String dbDriverName;
 
-//    @Bean
-//    UsersRepositoryImpl usersRepositoryImpl(DataSource dataSource) {
-//        return new UsersRepositoryImpl(dataSource);
-//    }
-//
-//    @Bean
-//    public UsersServiceImpl usersServiceImpl() {
-//        return new UsersServiceImpl();
-//    }
+    @Bean
+    StatRep statRep(DataSource dataSource) {
+        return new StatRep(dataSource);
+    }
 
     @Bean
     public DataSource dataSource(){
