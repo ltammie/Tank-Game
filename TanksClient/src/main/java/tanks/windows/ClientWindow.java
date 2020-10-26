@@ -162,15 +162,6 @@ public class ClientWindow {
                     if (enHpValue <= 0) {
                         gc.drawImage(boom, enemyPos, 30, 80, 100);
                     }
-                    this.stop();
-                }
-            }
-        }.start();
-
-        new AnimationTimer() {
-            public void handle(long currentNanoTime) {
-                System.out.println(status.get());
-                if (status.get()) {
                     showAlertWithHeaderText();
                 }
             }
