@@ -159,15 +159,11 @@ public class ClientWindow {
                     if (enHpValue <= 0) {
                         gc.drawImage(boom, enemyPos, 30, 80, 100);
                     }
+                    showAlertWithHeaderText();
                 }
             }
         };
-
         at.start();
-        while (!status.get()) {
-        }
-        at.stop();
-        showAlertWithHeaderText();
 
 
 //        if (status.get()) {
