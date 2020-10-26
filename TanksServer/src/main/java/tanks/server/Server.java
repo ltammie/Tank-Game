@@ -99,10 +99,7 @@ public class Server {
                     if (p.x > 360 - shift2 && p.x < 360 - shift2 + 80) {
                         hp2 -= 5;
                         i.remove();
-<<<<<<< HEAD
-=======
                         countHit1++;
->>>>>>> 3b52fc09967128a6a377d2db4833b236c961d675
                     }
                 }
                 if (p.y < 0) {
