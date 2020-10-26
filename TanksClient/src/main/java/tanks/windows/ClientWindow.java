@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
+import java.text.Format;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -160,7 +161,28 @@ public class ClientWindow {
                     if (enHpValue <= 0) {
                         gc.drawImage(boom, enemyPos, 30, 80, 100);
                     }
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Hi there");
+
+                    int shots1 = 0;
+                    int hit1 = 0;
+                    int shots2 = 0;
+                    int hit2 = 0;
+
+                    int mis1 = 0;
+                    int mis2 = 0;
+                    try {
+                        shots1 = in.readInt();
+                        hit1 = in.readInt();
+                        shots2 = in.readInt();
+                        hit2 = in.readInt();
+
+                        mis1 = shots1 - hit1;
+                        mis2 = shots2 - hit2;
+                    } catch (IOException e) {
+                        System.out.println("jj");
+                    }
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Your statistics:\tshots: " + shots1 + "\thits: " + hit1 + "\tmisses: " + mis1 +
+                            "\n" +  "Enemy statistics:\tshots: " + shots2 + "\thits: " + hit2 + "\tmisses: " + mis2 + "");
                     Platform.runLater(alert::show);
                     this.stop();
                 }
@@ -169,17 +191,11 @@ public class ClientWindow {
         at.start();
 
 
-//        if (status.get()) {
-//            int shots1 = in.readInt();
-//            int hit1 = in.readInt();
-//            int shots2 = in.readInt();
-//            int hit2 = in.readInt();
-//
-//            int mis1 = shots1 - hit1;
-//            int mis2 = shots2 - hit2;
+        if (status.get()) {
 
 
-//        }
+
+        }
 
     }
 
