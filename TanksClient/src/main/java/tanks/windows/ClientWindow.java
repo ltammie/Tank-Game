@@ -89,9 +89,7 @@ public class ClientWindow {
                         primaryStage.close();
                     }
                     if (code.equals("SPACE")) {
-//                        if (isShot.get() <= 0) {
                             isShot.set(5);
-//                        }
                     }
                 });
 
@@ -100,8 +98,7 @@ public class ClientWindow {
         primaryStage.show();
 
         System.out.println("connected");
-
-        new AnimationTimer() {
+        AnimationTimer at = new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 gc.drawImage(field, 0, 0, canvas.getWidth(), canvas.getHeight());
 
@@ -162,11 +159,15 @@ public class ClientWindow {
                     if (enHpValue <= 0) {
                         gc.drawImage(boom, enemyPos, 30, 80, 100);
                     }
-                    showAlertWithHeaderText();
-                    this.stop();
                 }
             }
-        }.start();
+        };
+
+        at.start();
+        if (status.get()) {
+            at.stop();
+            showAlertWithHeaderText();
+        }
 
 
 //        if (status.get()) {
