@@ -65,7 +65,6 @@ public class Server {
         int shot2 = 0;
 
         while (true) {
-
             try {
                 shift1 = in1.readInt();
                 shot1 = in1.readInt();
