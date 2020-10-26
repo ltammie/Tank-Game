@@ -142,8 +142,6 @@ public class Server {
                 }
 
 
-
-
                 out2.writeInt(bullets2.size());
                 for (Point p : bullets2) {
                     out2.writeInt(p.x);
