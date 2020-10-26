@@ -87,9 +87,10 @@ public class Server {
             while (i.hasNext()) {
                 Point p = i.next();
                 p.y -= 10;
-                if (p.y == 30) {
+                if (p.y == 50) {
                     if (p.x == 360 - shift2) {
                         hp2 -= 5;
+                            i.remove();
                     }
                 }
                 if (p.y < 0) {
@@ -105,6 +106,7 @@ public class Server {
                 if (p.y == 650) {
                     if (p.x == 360 + shift1) {
                         hp1 -= 5;
+                        i.remove();
                     }
                 }
                 if (p.y > 800) {
@@ -114,37 +116,41 @@ public class Server {
 
             try {
                 out1.writeInt(360 + shift1);
+                out2.writeInt(360 + shift2);
+
                 out1.writeInt(360 - shift2);
+                out2.writeInt(360 - shift1);
+
                 out1.writeInt(hp1);
+                out2.writeInt(hp2);
+
                 out1.writeInt(hp2);
+                out2.writeInt(hp1);
+
 
                 out1.writeInt(bullets1.size());
                 for (Point p : bullets1) {
                     out1.writeInt(p.x);
                     out1.writeInt(p.y);
                 }
-                out1.writeInt(bullets2.size());
-                for (Point p : bullets2) {
-                    out1.writeInt(p.x);
-                    out1.writeInt(p.y);
-                }
-
-                out2.writeInt(360 + shift2);
-                out2.writeInt(360 - shift1);
-                out2.writeInt(hp2);
-                out2.writeInt(hp1);
 
                 out2.writeInt(bullets2.size());
                 for (Point p : bullets2) {
                     out2.writeInt(p.x);
                     out2.writeInt(p.y);
                 }
+
+                out1.writeInt(bullets2.size());
+                for (Point p : bullets2) {
+                    out1.writeInt(p.x);
+                    out1.writeInt(p.y);
+                }
+
                 out2.writeInt(bullets1.size());
                 for (Point p : bullets1) {
                     out2.writeInt(p.x);
                     out2.writeInt(p.y);
                 }
-
 
                 out1.flush();
                 out2.flush();
