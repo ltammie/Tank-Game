@@ -103,6 +103,7 @@ public class ClientWindow {
                 int enemyPos = 360;
                 int hpValue = 100;
                 int enHpValue = 100;
+                boolean status = true;
 
                 try {
                     out.writeInt(shift.get());
@@ -132,6 +133,8 @@ public class ClientWindow {
                         int y = in.readInt();
                         gc.drawImage(eBullet, x, y, 10, 10);
                     }
+                    status = in.readBoolean();
+
                 } catch (IOException e) {
                     System.err.println("Failed to read from server!");
                     System.err.println(e.getMessage());
@@ -146,6 +149,16 @@ public class ClientWindow {
 
                 gc.drawImage(enemyHp, 650, 15, enHpValue, 20);
                 gc.drawImage(border, 640, 10, 120, 49);
+
+                if (status) {
+                    if (hpValue <= 0) {
+                        gc.drawImage(boom, newPos, 650, 80, 100);
+                    }
+                    if (enHpValue <= 0) {
+                        gc.drawImage(boom, enemyPos, 30, 80, 100);
+                    }
+                    this.stop();
+                }
             }
         }.start();
     }
