@@ -77,10 +77,10 @@ public class Server {
             }
 
             if (shot1 == 5) {
-                bullets1.add(new Point(360 + shift1 + 40, 630));
+                bullets1.add(new Point(360 + (shift1 + 40), 630));
             }
             if (shot2 == 5) {
-                bullets2.add(new Point(360 - shift2 + 40, 50));
+                bullets2.add(new Point(360 - (shift2 + 40), 50));
             }
 
             Iterator<Point> i = bullets1.iterator();
