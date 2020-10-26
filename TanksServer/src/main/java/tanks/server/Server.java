@@ -88,7 +88,7 @@ public class Server {
                 Point p = i.next();
                 p.y -= 10;
                 if (p.y == 50) {
-                    if (p.x == 360 - shift2) {
+                    if (p.x > 360 - shift2 && p.x < 360 - shift2 + 80) {
                         hp2 -= 5;
                             i.remove();
                     }
@@ -104,7 +104,7 @@ public class Server {
                 Point p = i.next(); // must be called before you can call i.remove()
                 p.y += 10;
                 if (p.y == 650) {
-                    if (p.x == 360 + shift1) {
+                    if (p.x > 360 + shift1 && p.x < 360 + shift1 + 80) {
                         hp1 -= 5;
                         i.remove();
                     }
