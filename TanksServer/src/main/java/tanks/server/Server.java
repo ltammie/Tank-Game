@@ -89,7 +89,7 @@ public class Server {
                 if (p.y == 50) {
                     if (p.x > 360 - shift2 && p.x < 360 - shift2 + 80) {
                         hp2 -= 5;
-                            i.remove();
+                        i.remove();
                     }
                 }
                 if (p.y < 0) {
@@ -166,9 +166,7 @@ public class Server {
             }
         }
         System.out.println("tt");
-        c1.close();
-        c2.close();
-        serverSocket.close();
     }
+
 }
 
