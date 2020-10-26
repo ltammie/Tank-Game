@@ -13,7 +13,5 @@ public class TankServer {
 
         Server server = new Server(console.getPort());
         server.start();
-
     }
-
 }
