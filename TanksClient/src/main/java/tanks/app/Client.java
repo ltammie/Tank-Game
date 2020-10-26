@@ -18,7 +18,6 @@ public class Client extends Application {
         primaryStage.setTitle("Connection Window");
         primaryStage.setWidth(800);
         primaryStage.setHeight(600);
-
         primaryStage.setScene(new Scene(Menu.getMenuGrid(primaryStage)));
         primaryStage.show();
     }

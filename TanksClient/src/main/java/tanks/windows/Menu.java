@@ -33,7 +33,6 @@ public class Menu {
         serverPortField.setTooltip(new Tooltip("Enter servers port to connect"));
         serverPortField.setText("8081");
 
-
         EventHandler<ActionEvent> event = e -> {
             ClientWindow window = new ClientWindow(primaryStage);
             try {
