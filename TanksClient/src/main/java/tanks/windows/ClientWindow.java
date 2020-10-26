@@ -84,7 +84,7 @@ public class ClientWindow {
                         primaryStage.close();
                     }
                     if (code.equals("SPACE")) {
-                        if (isShot.get() == 0) {
+                        if (isShot.get() <= 0) {
                             isShot.set(5);
                         }
                     }
@@ -95,10 +95,6 @@ public class ClientWindow {
         gc.drawImage(player, 360, 650, 80, 100);
         primaryStage.show();
 
-//        while (true) {
-//            if (in.readBoolean())
-//                break;
-//        }
         System.out.println("connected");
 
         final long startNanoTime = System.nanoTime();
@@ -114,6 +110,7 @@ public class ClientWindow {
 
                 try {
                     out.writeInt(shift.get());
+                    out.writeInt(isShot.get());
                     out.flush();
                 } catch (IOException e) {
                     System.err.println("Failed to send to server!");
