@@ -1,6 +1,7 @@
 package tanks.windows;
 
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -159,7 +160,8 @@ public class ClientWindow {
                     if (enHpValue <= 0) {
                         gc.drawImage(boom, enemyPos, 30, 80, 100);
                     }
-                    showAlertWithHeaderText();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Hi there");
+                    Platform.runLater(alert::showAndWait);
                 }
             }
         };
