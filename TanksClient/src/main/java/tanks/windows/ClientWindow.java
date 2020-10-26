@@ -164,10 +164,10 @@ public class ClientWindow {
         };
 
         at.start();
-        if (status.get()) {
-            at.stop();
-            showAlertWithHeaderText();
+        while (!status.get()) {
         }
+        at.stop();
+        showAlertWithHeaderText();
 
 
 //        if (status.get()) {
