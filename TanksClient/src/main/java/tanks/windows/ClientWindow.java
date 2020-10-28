@@ -144,11 +144,11 @@ public class ClientWindow {
                 gc.drawImage(player, newPos, 650, 80, 100);
                 gc.drawImage(enemy, enemyPos, 30, 80, 100);
 
-                gc.drawImage(hp, 15, 740, hpValue, 20);
-                gc.drawImage(border, 10, 730, 120, 40);
+                gc.drawImage(hp, 13, 740, hpValue, 20);
+                gc.drawImage(border, 10, 730, 103, 40);
 
-                gc.drawImage(enemyHp, 650, 15, enHpValue, 20);
-                gc.drawImage(border, 640, 10, 120, 49);
+                gc.drawImage(enemyHp, 650, 20, enHpValue, 20);
+                gc.drawImage(border, 647, 10, 103, 40);
 
                 if (status.get()) {
                     if (hpValue <= 0) {

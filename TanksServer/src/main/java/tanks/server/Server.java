@@ -87,11 +87,11 @@ public class Server {
             }
 
             if (shot1 == 5) {
-                bullets1.add(new Point(360 + (shift1 + 40), 630));
+                bullets1.add(new Point(360 + (shift1 + 40), 500));
                 countShot1++;
             }
             if (shot2 == 5) {
-                bullets2.add(new Point(360 - shift2 + 40, 50));
+                bullets2.add(new Point(360 - shift2 + 40, 100));
                 countShot2++;
             }
 
